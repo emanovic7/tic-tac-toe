@@ -29,6 +29,9 @@ let diagonalCount = [
 
 //define rows
 const rows = Array.from(document.getElementsByClassName('box'));
+const turnsDiv = document.getElementById('turn');
+
+
 
 //define clicks
 let clicked = [
@@ -42,15 +45,13 @@ let clicked = [
 
 function playerTurn(){
   turn = turn === 0 ? 1 : 0
-  turnDiv.innerHTML = `Player ${currentPlay()} it's your turn!`
+  turnsDiv.innerHTML = `Player ${currentPlay()} it's your turn!`
 }
 
 // select boxes
 const boxes = Array.from(document.getElementsByClassName('box'))
 
-boxes.forEach(box =>
-  box.addEventListener('click', selectBox())
-)
+boxes.forEach(box => box.addEventListener('click', selectBox))
 
 function selectBox(e){
   const x = parseInt(this.dataset.x)
@@ -71,8 +72,8 @@ function currentPlay(){
   return turn === 0 ? 'O' : 'X'
 }
 
-function editHTML(e){
-  e.innerHTML = currentPlay();
+function editHTML(el){
+  el.innerHTML = currentPlay();
 }
 
 function gameCheck(x,y){
@@ -85,8 +86,8 @@ function gameCheck(x,y){
 function diagonalCheck(x,y){
   if (y===x) diagonalCount[0][turn]++
   if ((y === 2 && x === 0) ||
-            (y === 1 && x === 1) ||
-            (y === 0 && x === 2)) diagonalCount[1][turn]++
+     (y === 1 && x === 1) ||
+     (y === 0 && x === 2)) diagonalCount[1][turn]++
 }
 
 
@@ -103,5 +104,5 @@ document.getElementById('Reset').addEventListener('click',
 
 //Save Game
 document.getElementById('Save Game').addEventListener('click', saveGame(){
-
+  console.log('game saved!');
 })
