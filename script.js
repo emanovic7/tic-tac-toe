@@ -42,7 +42,7 @@ let clicked = [
 
 function playerTurn(){
   turn = turn === 0 ? 1 : 0
-  turnDiv.innerHTML = `Player ${currentChip()} it's your turn!`
+  turnDiv.innerHTML = `Player ${currentPlay()} it's your turn!`
 }
 
 // select boxes
