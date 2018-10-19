@@ -28,8 +28,8 @@ let diagonalCount = [
 ]
 
 //define rows
-const rows = Array.from(document.getElementsByClassName('box'));
-const turnsDiv = document.getElementById('turn');
+const rows = Array.from(document.getElementsByClassName('box'))
+const turnsDiv = document.getElementById('turn')
 
 
 
@@ -65,6 +65,28 @@ function selectBox(e){
 function updateGame(x,y){
   clicked[x][y] = true
   gameCheck(x,y)
+
+  let win = checkReset(x,y)
+  if(!win){
+    playerTurn();
+  }
+}
+
+function checkReset(){
+  const winner = checkWin(x, y)
+  if (winner || totalMoves >= 9) {
+    const message = winner ? `Congrats ${currentPlay()} you win!` : `No winner!`
+    turnDiv.innerHTML = message
+    // disableAll()
+    return true
+  }
+}
+
+function checkWin(){
+  return (rowCount[x][turn] === 3 ||
+        columnCount[y][turn] === 3 ||
+        diagonalCount[0][turn] === 3 ||
+        diagonalCount[1][turn] === 3)
 }
 
 
